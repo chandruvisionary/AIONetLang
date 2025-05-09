@@ -1,0 +1,40 @@
+name: AIONetLang CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python --version
+
+      - name: Run AIONetLang Interpreter Test
+        run: |
+          echo "Running AIONetLang sample program..."
+          python interpreter/aionetlang_interpreter.py
+
+      - name: Confirm Deployment Success
+        run: echo "AIONetLang Interpreter executed successfully!"
+
+  # Future job: Package or deploy releases
+  # deploy:
+  #   needs: build-and-test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Deploy step
+  #       run: echo "Deploy logic can go here"
