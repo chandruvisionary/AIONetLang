@@ -1,0 +1,6 @@
+BEGIN
+    SET num1 = 20
+    RECEIVE num2 FROM "INPUT"
+    SET sum = num1 + num2
+    SEND "Sum: " + sum TO "DISPLAY"
+END
